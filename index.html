@@ -16,9 +16,16 @@
     
     <header>
         <div class="header-container">
-            <div class="logo">FunFunVancouver</div>
+            <a href="index.html">
+                <div class="logo">FunFunVancouver</div>
+            </a>
             <div class="links">
-                <a href="" id="fav" class="menu">お気に入り</a>
+                <div id="fav" class="menu">
+                    <a href="fav.html" id="">お気に入り</a>
+                    <div id="fav_count" class="">
+                        <p class="caption">0</p>
+                    </div>
+                </div>
                 <a href="" id="save" class="menu">保存済みプラン</a>
                 <button class="blue-btn sm">おすすめ観光地診断</button>
             </div>
@@ -282,8 +289,24 @@
         });
 
         //お気に入りアイコンのクリックアクション
+        let fav = 0;
         $(".fa-heart").on("click", function(){
             $(this).toggleClass("fa-regular fa-solid");
+            // アイコンが「fa-solid」に変更されたときだけ、お気に入りの数を増やす
+            if ($(this).hasClass("fa-solid")) {
+                fav++;
+            } else {
+                fav--;
+            }
+
+            if (fav>0){
+                $("#fav_count").css("display", "block");
+                $("#fav_count p").html(fav);
+            } else {
+                $("#fav_count").css("display", "none");
+            }
+            
+            console.log(fav);
         });
 
 
